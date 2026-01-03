@@ -4,6 +4,8 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
@@ -32,6 +34,18 @@ class User extends Authenticatable
         'password',
         'remember_token',
     ];
+
+    public function items(): BelongsToMany
+    {
+        return $this->belongsToMany(Item::class, UserPivot::class)
+            ->withPivot([
+                'uuid',
+                'started_at',
+                'finished_at',
+                'order',
+                'status',
+            ]);
+    }
 
     /**
      * Get the attributes that should be cast.

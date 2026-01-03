@@ -1,17 +1,17 @@
 <?php
 
-namespace App\Filament\Resources\Users\Schemas;
+namespace App\Filament\Resources\Items\Schemas;
 
-use Filament\Infolists\Components\TextEntry;
+use Filament\Forms\Components\TextInput;
 use Filament\Schemas\Schema;
 
-class UserInfolist
+class ItemForm
 {
     public static function configure(Schema $schema): Schema
     {
         return $schema
             ->components([
-                TextEntry::make('name'),
+                TextInput::make('name'),
             ]);
     }
 }
